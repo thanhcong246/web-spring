@@ -1,0 +1,8 @@
+package shopbanhang.Entity;
+
+public class Sides {
+	private int id;
+	private String id;
+	private String id;
+	private String id;
+}

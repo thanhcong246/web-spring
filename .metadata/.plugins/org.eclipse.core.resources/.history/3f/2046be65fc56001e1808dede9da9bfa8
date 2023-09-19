@@ -1,0 +1,20 @@
+package shopbanhang.Dao;
+
+import java.util.List;
+
+import shopbanhang.Dto.ProductsDto;
+import shopbanhang.Dto.ProductsDtoMapper;
+
+public class ProductsDao extends BaseDao {
+	private String SqlString() {
+		StringBuilder sql = new StringBuilder();
+		sql.append("select p.id as id_product , p.id_category, p.sizes,p.name,p.price,p.sale,p.title,p.highlight,p.new_product,p.details, c.id as id_color, c.name as name_color, c.code as code_color, c.img, p.created_at, p.updated_at from products as p inner join colors as c on p.id = c.id_product group by p.id, c.id_product");
+		return sql.toString();
+	}
+
+	public List<ProductsDto> GetDataProducts() {
+		String sql = SqlString();
+		List<ProductsDto> listProducts = _jdbcTemplate.query(sql, new ProductsDtoMapper());
+		return listProducts;
+	}
+}

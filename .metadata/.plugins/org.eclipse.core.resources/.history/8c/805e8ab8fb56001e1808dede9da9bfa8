@@ -1,0 +1,18 @@
+package shopbanhang.Dao;
+
+import java.util.List;
+
+import shopbanhang.Dto.ProductsDto;
+import shopbanhang.Dto.ProductsDtoMapper;
+
+public class ProductsDao extends BaseDao {
+	private String SqlString() {
+		String sql = "";
+		return sql;
+	}
+	public List<ProductsDto> GetDataProducts() {
+		String sql = "";
+		List<ProductsDto> listProducts = _jdbcTemplate.query(sql, new ProductsDtoMapper());
+		return listProducts;
+	}
+}

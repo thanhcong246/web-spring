@@ -1,0 +1,14 @@
+package shopbanhang.Entity;
+
+public class Sides {
+	private int id;
+	private String img;
+	private String caption;
+	private String content;
+	public Sides() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+}

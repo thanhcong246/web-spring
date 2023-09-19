@@ -1,0 +1,36 @@
+package shopbanhang.Dto;
+
+public class ProductsDto {
+	private
+	private
+	private
+	private
+	private
+	private
+	private
+	private
+	private
+	private
+	private
+	private
+	private
+	private
+	private
+	private
+	
+id_product 
+id_category
+sizes
+name
+price
+sale
+title
+highlight
+new_product
+details
+id_color 
+name_color
+code_color
+img
+created_at
+updated_at

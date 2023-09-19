@@ -1,0 +1,33 @@
+package shopbanhang.Dto;
+
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import org.springframework.jdbc.core.RowMapper;
+
+public class ProductsDtoMapper implements RowMapper<ProductsDto> {
+
+	@Override
+	public ProductsDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+		ProductsDto productsDto = new ProductsDto();
+		productsDto.setId_product(rs.getLong("id_product"));
+		productsDto.setId_category(rs.getInt("id_category"));
+		productsDto.setSizes(rs.getString("sizes"));
+		productsDto.setName(rs.getString("name"));
+		productsDto.setPrice(rs.getDouble("price"));
+		productsDto.setSale(rs.getLong("sale"));
+		productsDto.setTitle(rs.getLong("title"));
+		productsDto.setHighlight(rs.getLong("highlight"));
+		productsDto.setNew_product(rs.getLong("new_product"));
+		productsDto.setDetails(rs.getLong("details"));
+		productsDto.setId_color(rs.getLong("id_color"));
+		productsDto.setName_color(rs.getLong("name_color"));
+		productsDto.setCode_color(rs.getLong("code_color"));
+		productsDto.setImg(rs.getLong("img"));
+		productsDto.setCreated_at(rs.getLong("created_at"));
+		productsDto.setUpdated_at(rs.getLong("updated_at"));
+		return productsDto;
+	}
+
+}

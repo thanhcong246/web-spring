@@ -1,0 +1,27 @@
+package shopbanhang.UserController;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import shopbanhang.Dao.SlidesDao;
+
+@Controller
+public class HomeController {
+	@Autowired
+	SlidesDao homeDao;
+	
+	@RequestMapping(value = { "/", "trang-chu" })
+	public ModelAndView Index() {
+		ModelAndView modelAndView = new ModelAndView("user/index");
+		modelAndView.addObject("slides",homeDao.GetDataSlide());
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = { "/product" })
+	public ModelAndView Product() {
+		ModelAndView modelAndView = new ModelAndView("user/product");
+		return modelAndView;
+	}
+}

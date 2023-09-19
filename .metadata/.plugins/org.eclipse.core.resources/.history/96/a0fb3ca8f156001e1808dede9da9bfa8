@@ -1,0 +1,11 @@
+package shopbanhang.Entity;
+
+public class Menus {
+	private int id;
+	private String name;
+	private String url;
+	public Menus() {
+	}
+	
+	
+}

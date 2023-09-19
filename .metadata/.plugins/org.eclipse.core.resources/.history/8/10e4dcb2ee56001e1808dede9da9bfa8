@@ -1,0 +1,12 @@
+package shopbanhang.Controller.User;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+import shopbanhang.Service.User.HomeImplService;
+
+@Controller
+public class BaseController {
+	@Autowired
+	HomeImplService _homeHomeImplService;
+}

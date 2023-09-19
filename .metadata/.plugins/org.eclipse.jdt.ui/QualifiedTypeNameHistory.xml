@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="shopbanhang.Entity.MapperSlides"/>
+    <fullyQualifiedTypeName name="shopbanhang.Entity.Slides"/>
+    <fullyQualifiedTypeName name="shopbanhang.Dao.SlidesDao"/>
+    <fullyQualifiedTypeName name="shopbanhang.Service.User.HomeImpl"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+    <fullyQualifiedTypeName name="shopbanhang.Controller.User.HomeController"/>
+    <fullyQualifiedTypeName name="javax.swing.tree.RowMapper"/>
+    <fullyQualifiedTypeName name="shopbanhang.Entity.MapperCategorys"/>
+    <fullyQualifiedTypeName name="shopbanhang.Entity.Categorys"/>
+    <fullyQualifiedTypeName name="shopbanhang.Dao.CategorysDao"/>
+    <fullyQualifiedTypeName name="shopbanhang.Controller.User.BaseController"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
+    <fullyQualifiedTypeName name="shopbanhang.Service.User.HomeImplService"/>
+    <fullyQualifiedTypeName name="org.springframework.web.servlet.ModelAndView"/>
+    <fullyQualifiedTypeName name="javax.annotation.PostConstruct"/>
+    <fullyQualifiedTypeName name="org.springframework.jdbc.core.JdbcTemplate"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="shopbanhang.Dao.MenuDao"/>
+    <fullyQualifiedTypeName name="shopbanhang.Dao.MenusDao"/>
+    <fullyQualifiedTypeName name="shopbanhang.Entity.Menus"/>
+    <fullyQualifiedTypeName name="shopbanhang.Entity.MapperMenu"/>
+    <fullyQualifiedTypeName name="java.lang.StrictMath"/>
+    <fullyQualifiedTypeName name="java.sql.Date"/>
+    <fullyQualifiedTypeName name="org.springframework.jdbc.core.RowMapper"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="shopbanhang.Dto.ProductsDto"/>
+    <fullyQualifiedTypeName name="shopbanhang.Dao.BaseDao"/>
+    <fullyQualifiedTypeName name="shopbanhang.Dto.ProductsDtoMapper"/>
+    <fullyQualifiedTypeName name="java.lang.StringBuffer"/>
+    <fullyQualifiedTypeName name="java.lang.StringBuilder"/>
+    <fullyQualifiedTypeName name="shopbanhang.Dao.ProductsDao"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
+    <fullyQualifiedTypeName name="javax.xml.transform.TransformerFactory"/>
+    <fullyQualifiedTypeName name="javax.xml.transform.Transformer"/>
+    <fullyQualifiedTypeName name="javax.xml.transform.stream.StreamSource"/>
+</qualifiedTypeNameHistroy>

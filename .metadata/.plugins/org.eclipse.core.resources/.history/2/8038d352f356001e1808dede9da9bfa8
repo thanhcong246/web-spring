@@ -1,0 +1,22 @@
+package shopbanhang.Controller.User;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
+public class HomeController extends BaseController {
+
+	@RequestMapping(value = { "/", "trang-chu" })
+	public ModelAndView Index() {
+		_mvShare.addObject("slides",_homeHomeImplService.GetDataSlide());
+		mv.addObject("categorys",_homeHomeImplService.GetDataCategorys());
+		return mv;
+	}
+ 	
+	@RequestMapping(value = { "/product" })
+	public ModelAndView Product() {
+		ModelAndView modelAndView = new ModelAndView("user/product");
+		return modelAndView;
+	}
+}

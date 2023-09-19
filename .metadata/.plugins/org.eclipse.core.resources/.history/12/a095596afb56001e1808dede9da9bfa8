@@ -1,0 +1,12 @@
+package shopbanhang.Dao;
+
+import java.util.List;
+
+import shopbanhang.Dto.ProductsDto;
+
+public class ProductsDao extends BaseDao{
+	public List<ProductsDto> GetDataProducts(){
+		List<ProductsDto> listProducts = 
+				return listProducts;
+	}
+}

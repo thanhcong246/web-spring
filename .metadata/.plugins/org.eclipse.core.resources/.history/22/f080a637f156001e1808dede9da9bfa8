@@ -1,0 +1,10 @@
+package shopbanhang.Dao;
+
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class MenuDao {
+	public List<Menus> GetDataMenus(){
+		
+	}
+}

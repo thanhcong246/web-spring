@@ -1,0 +1,14 @@
+package shopbanhang.Dao;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import shopbanhang.Entity.Menus;
+
+@Repository
+public class MenuDao {
+	public List<Menus> GetDataMenus(){
+		
+	}
+}

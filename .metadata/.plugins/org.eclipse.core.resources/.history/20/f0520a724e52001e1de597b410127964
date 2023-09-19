@@ -1,0 +1,11 @@
+package shopbanhang.Service.User;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import shopbanhang.Entity.Slides;
+@Service
+public interface IHomeService {
+	public List<Slides> GetDataSlide();
+}
