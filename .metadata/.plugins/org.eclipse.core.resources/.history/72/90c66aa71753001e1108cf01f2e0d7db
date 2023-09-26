@@ -1,8 +1,0 @@
-package shopbanhang.Entity;
-
-import javax.swing.tree.RowMapper;
-
-public class MapperCategorys implements RowMapper<Categorys>{
-	
-
-}

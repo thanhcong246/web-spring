@@ -1,7 +1,0 @@
-package shopbanhang.Controller.User;
-
-
-@Controller
-public class BaseController {
-
-}

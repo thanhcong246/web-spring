@@ -1,0 +1,11 @@
+package shopbanhang.Service.User;
+
+import java.util.List;
+
+import shopbanhang.Dto.ProductsDto;
+
+public interface ICategoryService {
+	public List<ProductsDto> GetDataProductsPaginate(int start, int end){
+		
+	}
+}

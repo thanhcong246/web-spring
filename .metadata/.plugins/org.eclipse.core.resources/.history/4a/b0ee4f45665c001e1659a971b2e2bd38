@@ -1,0 +1,16 @@
+package shopbanhang.Service.User;
+
+import java.util.List;
+
+import shopbanhang.Dao.ProductsDao;
+import shopbanhang.Dto.ProductsDto;
+
+public class CategoryServiceImpl implements ICategoryService{
+
+	ProductsDao productsDao;
+	@Override
+	public List<ProductsDto> GetDataProductsPaginate(int start, int end) {
+		return null;
+	}
+
+}

@@ -1,8 +1,0 @@
-package shopbanhang.Entity;
-
-import org.springframework.jdbc.core.RowMapper;
-
-public class MapperCategorys implements RowMapper<Categorys>{
-
-
-}

@@ -1,7 +1,0 @@
-package shopbanhang.Dao;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
-public class CategorysDao {
-	@Autowired
-}

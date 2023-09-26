@@ -10,10 +10,11 @@ import org.springframework.stereotype.Repository;
 import shopbanhang.Entity.MapperSlides;
 import shopbanhang.Entity.Slides;
 
+// xử lý hiển thị slider
 @Repository
 public class SlidesDao extends BaseDao {
-	
-	public List<Slides> GetDataSlide(){
+
+	public List<Slides> GetDataSlide() {
 		List<Slides> list = new ArrayList<Slides>();
 		String sql = "Select * from slides";
 		list = _jdbcTemplate.query(sql, new MapperSlides());

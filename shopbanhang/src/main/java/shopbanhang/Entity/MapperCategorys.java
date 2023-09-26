@@ -15,6 +15,4 @@ public class MapperCategorys implements RowMapper<Categorys>{
 		categorys.setDescription(rs.getString("description"));
 		return categorys;
 	}
-
-
 }

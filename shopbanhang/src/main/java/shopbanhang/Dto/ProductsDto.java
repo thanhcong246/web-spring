@@ -1,6 +1,7 @@
 package shopbanhang.Dto;
 
 import java.sql.Date;
+// DTO khai báo thuộc tính của sản phẩm : sản phẩm mới, sản phẩm nổi bật ... 
 
 public class ProductsDto {
 	private long id_product;

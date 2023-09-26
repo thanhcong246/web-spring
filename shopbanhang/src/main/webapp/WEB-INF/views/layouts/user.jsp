@@ -17,6 +17,9 @@
 	rel="stylesheet" />
 <!-- Customize styles -->
 <link href="<c:url value="/assets/user/style.css" />" rel="stylesheet" />
+
+<!-- Customize styles -->
+<link href="<c:url value="/assets/user/style1.css" />" rel="stylesheet" />
 <!-- font awesome styles -->
 <link
 	href="<c:url value="/assets/user/font-awesome/css/font-awesome.css" />"

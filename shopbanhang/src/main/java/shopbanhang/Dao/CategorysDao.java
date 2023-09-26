@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import shopbanhang.Entity.Categorys;
 import shopbanhang.Entity.MapperCategorys;
 
+// Sử lý, hiển thị danh sách category
 @Repository
 public class CategorysDao extends BaseDao{
 	

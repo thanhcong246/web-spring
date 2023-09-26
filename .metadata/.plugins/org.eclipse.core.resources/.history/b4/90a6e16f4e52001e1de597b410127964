@@ -1,9 +1,0 @@
-package shopbanhang.Service.User;
-
-import java.util.List;
-
-import shopbanhang.Entity.Slides;
-
-public interface IHomeService {
-	public List<Slides> GetDataSlide();
-}

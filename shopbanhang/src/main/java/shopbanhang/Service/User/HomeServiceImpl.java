@@ -18,30 +18,38 @@ import shopbanhang.Entity.Slides;
 public class HomeServiceImpl implements IHomeService {
 	@Autowired
 	private SlidesDao slidesDao;
-	
+
 	@Autowired
 	private CategorysDao categorysDao;
-	
+
 	@Autowired
 	private MenusDao menuDao;
-	
+
 	@Autowired
 	private ProductsDao productsDao;
-	
+
 	@Override
 	public List<Slides> GetDataSlide() {
 		return slidesDao.GetDataSlide();
 	}
+
 	public List<Categorys> GetDataCategorys() {
 		return categorysDao.GetDataCategory();
 	}
-	
-	public List<Menus> GetDataMenus(){
+
+	public List<Menus> GetDataMenus() {
 		return menuDao.GetDataMenus();
 	}
+
 	@Override
-	public List<ProductsDto> GetDataProducts() {
-		List<ProductsDto> listProducts = productsDao.GetDataProducts();
-		return listProducts;
+	public List<ProductsDto> GetDataNewProducts() {
+		List<ProductsDto> listNewProducts = productsDao.GetDataNewProducts();
+		return listNewProducts;
+	}
+
+	@Override
+	public List<ProductsDto> GetDataHightlightProducts() {
+		List<ProductsDto> listHightlightProducts = productsDao.GetDataHightlightProducts();
+		return listHightlightProducts;
 	}
 }

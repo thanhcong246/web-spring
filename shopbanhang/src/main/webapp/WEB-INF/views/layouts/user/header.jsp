@@ -53,7 +53,7 @@ Navigation Bar Section
 							<li class="">
 						</c:if>
 						<a href="index.html">${item.name } </a>
-							</li>
+						</li>
 					</c:forEach>
 				</ul>
 				<form action="#" class="navbar-search pull-left">

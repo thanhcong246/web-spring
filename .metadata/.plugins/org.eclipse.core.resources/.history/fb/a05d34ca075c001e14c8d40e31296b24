@@ -1,0 +1,14 @@
+package shopbanhang.Controller.User;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
+public class CategoryController {
+	public ModelAndView Product() {
+		@RequestMapping(value="")
+		ModelAndView mv = new ModelAndView("user/category");
+		return mv;
+	}
+}

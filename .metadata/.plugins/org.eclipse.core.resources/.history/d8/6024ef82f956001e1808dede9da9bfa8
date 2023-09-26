@@ -1,7 +1,0 @@
-package shopbanhang.Dto;
-
-import org.springframework.jdbc.core.RowMapper;
-
-public class ProductsDtoMapper implements RowMapper<ProductsDto> {
-
-}

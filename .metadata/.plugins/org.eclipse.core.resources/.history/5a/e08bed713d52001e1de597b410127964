@@ -1,7 +1,0 @@
-package shopbanhang.Entity;
-
-import org.springframework.jdbc.core.RowMapper;
-
-public class MapperSlides implements RowMapper<T>{
-
-}

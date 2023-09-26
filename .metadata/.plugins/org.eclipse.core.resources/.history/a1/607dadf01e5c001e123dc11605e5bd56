@@ -1,0 +1,10 @@
+package shopbanhang.Service.User;
+
+import org.springframework.stereotype.Service;
+
+import shopbanhang.Dto.PaginatesDto;
+
+@Service
+public interface IPaginatesService {
+	public PaginatesDto GetInfoPaginates();
+}
