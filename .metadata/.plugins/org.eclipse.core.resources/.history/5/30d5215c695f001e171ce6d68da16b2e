@@ -1,0 +1,16 @@
+package shopbanhang.Service.User;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import shopbanhang.Entity.Users;
+
+@Service
+public class AccountServiceImpl implements IAccountService {
+	@Autowired
+	UsersDao usersDao = new UsersDao();
+	
+	public int AddAccount(Users user) {
+		return usersDao.AddAccount(user);
+	}
+}

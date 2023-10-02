@@ -1,0 +1,7 @@
+package shopbanhang.Dto;
+
+public class CartDto {
+	private int quanty;
+	private double totalPrice;
+	ProductsDto product;
+}

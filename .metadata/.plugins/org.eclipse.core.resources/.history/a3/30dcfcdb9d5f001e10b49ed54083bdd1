@@ -1,0 +1,22 @@
+package shopbanhang.Service.User;
+
+import java.util.HashMap;
+
+import shopbanhang.Dto.CartDto;
+import shopbanhang.Entity.Bills;
+
+public class BillsServiceImpl implements IBillsService{
+
+	@Override
+	public int AddBills(Bills bill) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void AddBillsDetail(HashMap<Long, CartDto> cart) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

@@ -1,0 +1,7 @@
+package shopbanhang.Service.User;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class AccountServiceImpl implements IAccountService {
+	@Autowired
+}

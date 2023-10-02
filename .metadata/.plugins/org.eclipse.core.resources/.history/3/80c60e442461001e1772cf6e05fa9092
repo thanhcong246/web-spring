@@ -1,0 +1,162 @@
+package shopbanhang.Dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Repository;
+
+import shopbanhang.Dto.ProductsDto;
+import shopbanhang.Dto.ProductsDtoMapper;
+import shopbanhang.Entity.MapperProducts;
+import shopbanhang.Entity.Products;
+
+// Xử lý hiển thị sản phẩm
+@Repository
+public class ProductsDao extends BaseDao {
+	private final boolean YES = true;
+	private final boolean NO = false;
+
+	private StringBuffer SqlString() { // sql sản phẩm chung
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT ");
+		sql.append("    p.id AS id_product, ");
+		sql.append("    p.id_category, ");
+		sql.append("    p.sizes, ");
+		sql.append("    p.name, ");
+		sql.append("    p.price, ");
+		sql.append("    p.sale, ");
+		sql.append("    p.title, ");
+		sql.append("    p.highlight, ");
+		sql.append("    p.new_product, ");
+		sql.append("    p.details, ");
+		sql.append("    c.id AS id_color, ");
+		sql.append("    c.name AS name_color, ");
+		sql.append("    c.code AS code_color, ");
+		sql.append("    c.img, ");
+		sql.append("    p.created_at, ");
+		sql.append("    p.updated_at ");
+		sql.append("FROM ");
+		sql.append("    products AS p ");
+		sql.append("INNER JOIN ");
+		sql.append("    colors AS c ");
+		sql.append("ON ");
+		sql.append("    p.id = c.id_product ");
+		return sql;
+	}
+
+	private String SqlProducts(boolean newProduct, boolean highLight) { // sản phẩm
+		StringBuffer sql = SqlString();
+		sql.append("WHERE 1=1 ");
+		if (highLight) {
+			sql.append("AND p.highlight = true ");
+		}
+		if (newProduct) {
+			sql.append("AND p.new_product = true ");
+		}
+		sql.append("GROUP BY ");
+		sql.append("    p.id, c.id_product ");
+		sql.append("   	ORDER BY RAND() ");
+		if (highLight) {
+			sql.append("   	LIMIT 9 ");
+		}
+		if (newProduct) {
+			sql.append("   	LIMIT 12 ");
+		}
+		return sql.toString();
+	}
+
+	private StringBuffer SqlProductsById(int id) { // sản phẩm theo id category
+		StringBuffer sql = SqlString();
+		sql.append("WHERE 1 = 1 ");
+		sql.append(" AND id_category = " + id + " ");
+		return sql;
+	}
+
+	private String SqlProductsPaginate(int id, int start, int totalPage) { // phân trang sản phẩm
+		StringBuffer sql = SqlProductsById(id);
+		sql.append(" LIMIT " + start + ", " + totalPage);
+		return sql.toString();
+	}
+
+	private String SqlProductById(long id) { // chi tiết sản phẩm
+		StringBuffer sql = SqlString();
+		sql.append(" WHERE 1 = 1 ");
+		sql.append(" AND p.id = " + id + " ");
+		sql.append(" LIMIT 1 ");
+		return sql.toString();
+	}
+
+	private StringBuffer SqlAllProduct() {
+		StringBuffer sql = new StringBuffer("SELECT * FROM products"); // Lấy toàn bộ sản phẩm
+		return sql;
+	}
+	
+	private String SqlProductsPaginateAll(int start, int totalPage) { // phân trang tổng sản phẩm
+		StringBuffer sql = SqlAllProduct();
+		sql.append(" LIMIT " + start + ", " + totalPage);
+		return sql.toString();
+	}
+	
+	public int getTotalProductCount() {
+	    StringBuffer sql = new StringBuffer("SELECT COUNT(*) FROM products"); // Đếm tổng số sản phẩm
+	    try {
+	        int totalCount = _jdbcTemplate.queryForObject(sql.toString(), Integer.class);
+	        return totalCount;
+	    } catch (DataAccessException e) {
+	        // Xử lý ngoại lệ nếu có lỗi truy vấn
+	        e.printStackTrace();
+	        return 0; // Hoặc trả về một giá trị mặc định khác nếu xảy ra lỗi
+	    }
+	}
+
+
+	public List<ProductsDto> GetDataNewProducts() { // xử lý sản phẩm mới
+		String sql = SqlProducts(YES, NO);
+		List<ProductsDto> listNewProducts = _jdbcTemplate.query(sql, new ProductsDtoMapper());
+		return listNewProducts;
+	}
+
+	public List<ProductsDto> GetDataHightlightProducts() { // xử lý sản phẩm nổi bật
+		String sql = SqlProducts(NO, YES);
+		List<ProductsDto> listHightlightProducts = _jdbcTemplate.query(sql, new ProductsDtoMapper());
+		return listHightlightProducts;
+	}
+
+	public List<ProductsDto> GetAllProductsByID(int id) { // xử lý sản phẩm theo id category
+		String sql = SqlProductsById(id).toString();
+		List<ProductsDto> listProducts = _jdbcTemplate.query(sql, new ProductsDtoMapper());
+		return listProducts;
+	}
+
+	public List<ProductsDto> GetDataProductsPaginate(int id, int start, int totalPage) { // xử lý phân trang sản phẩm
+		StringBuffer sqlGetDataById = SqlProductsById(id);
+		List<ProductsDto> listProductsById = _jdbcTemplate.query(sqlGetDataById.toString(), new ProductsDtoMapper());
+		List<ProductsDto> listProducts = new ArrayList<ProductsDto>();
+		if (listProductsById.size() > 0) {
+			String sql = SqlProductsPaginate(id, start, totalPage);
+			listProducts = _jdbcTemplate.query(sql, new ProductsDtoMapper());
+		}
+		return listProducts;
+	}
+	
+
+	public List<ProductsDto> GetProductById(long id) { // xử lý chi tiết sản phẩm
+		String sql = SqlProductById(id);
+		List<ProductsDto> listProducts = _jdbcTemplate.query(sql, new ProductsDtoMapper());
+		return listProducts;
+	}
+
+	public ProductsDto FindProductById(long id) { // lấy sản phẩm theo id sản phẩm
+		String sql = SqlProductById(id);
+		ProductsDto product = _jdbcTemplate.queryForObject(sql, new ProductsDtoMapper());
+		return product;
+	}
+	
+	public List<Products> GetAllProduct() {
+	    StringBuffer sql = SqlAllProduct();
+	    List<Products> productsList = _jdbcTemplate.query(sql.toString(), new MapperProducts());
+	    return productsList;
+	}
+
+}

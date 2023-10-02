@@ -10,5 +10,6 @@ import shopbanhang.Dto.ProductsDto;
 public interface ICategoryService {
 	public List<ProductsDto> GetAllProductsByID(int id);
 
-	public List<ProductsDto> GetDataProductsPaginate(int start, int end);
+	public List<ProductsDto> GetDataProductsPaginate(int id, int start, int totalPage);
+	
 }

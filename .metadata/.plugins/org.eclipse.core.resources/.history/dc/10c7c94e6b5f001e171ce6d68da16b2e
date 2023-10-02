@@ -1,0 +1,20 @@
+package shopbanhang.Controller.User;
+
+import org.springframework.stereotype.Repository;
+
+import shopbanhang.Dao.BaseDao;
+import shopbanhang.Entity.Users;
+
+@Repository
+public class UsersDao extends BaseDao {
+	public int AddAccount(Users user) {
+		StringBuffer sqlBuffer = new StringBuffer();
+		sqlBuffer.append("INSERT INTO users (user, password, display_name, address) VALUES (");
+		sqlBuffer.append("" + user.getUser() + ", ");
+		sqlBuffer.append("" + user.getUser() + ", ");
+		sqlBuffer.append("" + user.getUser() + ", ");
+		sqlBuffer.append("" + user.getUser() + ") ");
+		int insert = 0;
+		return insert;
+	}
+}

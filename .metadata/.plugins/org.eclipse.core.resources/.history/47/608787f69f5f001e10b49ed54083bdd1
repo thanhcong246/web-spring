@@ -1,0 +1,19 @@
+package shopbanhang.Dao;
+
+import shopbanhang.Entity.Bills;
+
+public class BillsDao extends BaseDao{
+	public int AddBills(Bills bill) {
+		StringBuilder sql = new StringBuilder();
+		sql.append("INSERT INTO `bills`(`user`, `phone`, `display_name`, `address`, `total`, `quanty`, `note`) ");
+		sql.append("VALUES ");
+		sql.append("('user', ");
+		sql.append("('user', ");
+		sql.append("'phone', ");
+		sql.append("'display_name', ");
+		sql.append("'address', ");
+		sql.append("'0', ");
+		sql.append("'0', ");
+		sql.append("'note')");
+	}
+}

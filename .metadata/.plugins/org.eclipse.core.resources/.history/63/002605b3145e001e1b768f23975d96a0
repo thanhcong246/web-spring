@@ -1,0 +1,79 @@
+package shopbanhang.Dao;
+
+import java.util.HashMap;
+
+import shopbanhang.Dto.CartDto;
+import shopbanhang.Dto.ProductsDto;
+
+public class CartDao extends BaseDao {
+	private ProductsDao productsDao = new ProductsDao();
+
+	public HashMap<Long, CartDto> AddCart(long id, HashMap<Long, CartDto> cart) { // thêm sản phẩm vào giỏ hàng
+		CartDto itemCart = new CartDto();
+		ProductsDto product = productsDao.FindProductById(id);
+		if (product != null) {
+			itemCart.setProduct(product);
+			itemCart.setQuanty(1);
+			itemCart.setTotalPrice(product.getPrice());
+		}
+		cart.put(id, itemCart);
+		return cart;
+	}
+
+	public HashMap<Long, CartDto> EditCart(long id, int quanty, HashMap<Long, CartDto> cart) { // chỉnh sửa sản phẩm trong giỏ hàng
+		if (cart == null) {
+			return cart;
+		}
+		CartDto itemCart = new CartDto();
+		if (cart.containsKey(id)) { // kiểm tra xem sản phẩm(id) đã tồn tại trong giỏ hàng chưa
+			itemCart = cart.get(id);
+			itemCart.setQuanty(quanty);
+			double totalPrice = quanty * itemCart.getProduct().getPrice();
+			itemCart.setTotalPrice(totalPrice);
+		}
+		cart.put(id, itemCart);
+		return cart;
+	}
+
+	public HashMap<Long, CartDto> DeleteCart(long id, HashMap<Long, CartDto> cart) { // xóa sản phẩm trong giỏ hàng
+		if (cart == null) {
+			return cart;
+		}
+		if (cart.containsKey(id)) {
+			cart.remove(id);
+		}
+		return cart;
+	}
+	
+	public HashMap<Long, CartDto> TotalQuanty(HashMap<Long, CartDto> cart){ // tính tổng số sản phẩm có trong giỏ hàng
+		int totalQuanty = 0;
+		
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

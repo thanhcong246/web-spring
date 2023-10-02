@@ -1,0 +1,16 @@
+package shopbanhang.Entity;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import org.springframework.jdbc.core.RowMapper;
+
+public class MapperProducts implements RowMapper<Products>{
+
+	@Override
+	public Products mapRow(ResultSet rs, int rowNum) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

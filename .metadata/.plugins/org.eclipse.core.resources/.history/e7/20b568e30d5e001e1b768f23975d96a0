@@ -1,0 +1,16 @@
+package shopbanhang.Dto;
+
+public class CartDto {
+	private int quanty;
+	private double totalPrice;
+	ProductsDto product;
+	public CartDto(int quanty, double totalPrice, ProductsDto product) {
+		super();
+		this.quanty = quanty;
+		this.totalPrice = totalPrice;
+		this.product = product;
+	}
+	
+	public CartDto() {
+	}
+}

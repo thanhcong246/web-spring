@@ -1,0 +1,5 @@
+package shopbanhang.Service.User;
+
+public class AccountServiceImpl implements IAccountService {
+
+}

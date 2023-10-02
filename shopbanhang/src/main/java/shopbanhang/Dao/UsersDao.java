@@ -1,0 +1,26 @@
+package shopbanhang.Dao;
+
+import org.springframework.stereotype.Repository;
+
+import shopbanhang.Entity.MapperUsers;
+import shopbanhang.Entity.Users;
+
+@Repository
+public class UsersDao extends BaseDao {
+	public int AddAccount(Users user) { // đăng ký người dùng
+		StringBuffer sqlBuffer = new StringBuffer();
+		sqlBuffer.append("INSERT INTO users (user, password, display_name, address) VALUES (");
+		sqlBuffer.append("'" + user.getUser() + "', ");
+		sqlBuffer.append("'" + user.getPassword() + "', ");
+		sqlBuffer.append("'" + user.getDisplay_name() + "', ");
+		sqlBuffer.append("'" + user.getAddress() + "') ");
+		int insert = _jdbcTemplate.update(sqlBuffer.toString());
+		return insert;
+	}
+
+	public Users GetUserByAcc(Users user) { // đăng nhập
+		String sql = "SELECT * FROM users WHERE user = '" + user.getUser() + "'";
+		Users result = _jdbcTemplate.queryForObject(sql, new MapperUsers());
+		return result;
+	}
+}

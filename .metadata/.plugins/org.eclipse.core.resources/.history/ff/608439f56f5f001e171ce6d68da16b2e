@@ -1,0 +1,38 @@
+package shopbanhang.Controller.User;
+
+import org.springframework.stereotype.Repository;
+
+import shopbanhang.Dao.BaseDao;
+import shopbanhang.Dto.ProductsDto;
+import shopbanhang.Dto.ProductsDtoMapper;
+import shopbanhang.Entity.MapperUsers;
+import shopbanhang.Entity.Users;
+
+@Repository
+public class UsersDao extends BaseDao {
+	public int AddAccount(Users user) {
+		StringBuffer sqlBuffer = new StringBuffer();
+		sqlBuffer.append("INSERT INTO users (user, password, display_name, address) VALUES (");
+		sqlBuffer.append("'" + user.getUser() + "', ");
+		sqlBuffer.append("'" + user.getPassword() + "', ");
+		sqlBuffer.append("'" + user.getDisplay_name() + "', ");
+		sqlBuffer.append("'" + user.getAddress() + "') ");
+		int insert = _jdbcTemplate.update(sqlBuffer.toString());
+		return insert;
+	}
+	
+	public Users GetUserByAcc(Users user) {
+		StringBuffer sqlBuffer = new StringBuffer();
+		sqlBuffer.append("INSERT INTO users (user, password, display_name, address) VALUES (");
+		sqlBuffer.append("'" + user.getUser() + "', ");
+		sqlBuffer.append("'" + user.getPassword() + "', ");
+		sqlBuffer.append("'" + user.getDisplay_name() + "', ");
+		sqlBuffer.append("'" + user.getAddress() + "') ");
+		
+		String sql = SqlProductById(id);
+		Users product = _jdbcTemplate.queryForObject(sql, new MapperUsers());
+		
+		int insert = _jdbcTemplate.update(sqlBuffer.toString());
+		return insert;
+	}
+}

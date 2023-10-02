@@ -10,7 +10,15 @@
 	<url>http://maven.apache.org</url>
 	<properties>
 	</properties>
+
 	<dependencies>
+		<!-- jbcrypt -->
+		<dependency>
+			<groupId>org.mindrot</groupId>
+			<artifactId>jbcrypt</artifactId>
+			<version>0.4</version>
+		</dependency>
+
 		<!-- javax.annotation-api -->
 		<dependency>
 			<groupId>javax.annotation</groupId>

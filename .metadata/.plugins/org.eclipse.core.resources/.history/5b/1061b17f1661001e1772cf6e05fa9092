@@ -1,0 +1,34 @@
+package shopbanhang.Controller.User;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import shopbanhang.Service.User.IProductService;
+
+// chi tiết sản phẩm
+@Controller
+public class ProductController extends BaseController {
+	
+	@Autowired
+	private IProductService _productService;
+	
+	@RequestMapping(value = { "san-pham"})
+	public ModelAndView Index() {
+		_mvShare.setViewName("user/products/product");
+		return _mvShare;
+	}
+	
+	@RequestMapping(value = { "chi-tiet-san-pham/{id}"})
+	public ModelAndView IndexProductDetail(@PathVariable long id) {
+		_mvShare.setViewName("user/products/productDetail");
+		_mvShare.addObject("productDetail", _productService.GetProductById(id));
+		int idCategory = _productService.GetProductById(id).getId_category();
+		_mvShare.addObject("productByIdCategory", _productService.GetProductByIdCategory(idCategory)); // xử lý phần hiển thị thông tin sản phâm liên quan trong trang chi tiết sản phẩm
+		return _mvShare;
+	}
+	
+
+}

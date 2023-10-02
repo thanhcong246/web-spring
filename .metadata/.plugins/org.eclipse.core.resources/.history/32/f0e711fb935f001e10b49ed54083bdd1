@@ -1,0 +1,18 @@
+package shopbanhang.Entity;
+
+public class Bills {
+	private long id;
+	private String user;
+	private String phone;
+	private String password;
+	private String display_name;
+	private String address;
+	private double total;
+	private int quanty;
+	private String note;
+	public Bills() {
+		super();
+	}
+	
+	
+}

@@ -1,0 +1,13 @@
+package shopbanhang.Controller.User;
+
+import org.springframework.stereotype.Repository;
+
+import shopbanhang.Dao.BaseDao;
+import shopbanhang.Entity.Users;
+
+@Repository
+public class UsersDao extends BaseDao {
+	public int AddAccount(Users user) {
+		int insert = 0;
+	}
+}

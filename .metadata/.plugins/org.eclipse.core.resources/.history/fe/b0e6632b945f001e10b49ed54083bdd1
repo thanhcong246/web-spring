@@ -1,0 +1,8 @@
+package shopbanhang.Entity;
+
+public class BillDetail {
+	private long id;
+	private long id_product;
+	private int quanty;
+	private double total;
+}

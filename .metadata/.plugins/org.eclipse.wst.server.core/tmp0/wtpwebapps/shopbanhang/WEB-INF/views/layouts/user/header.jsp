@@ -1,34 +1,62 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@page isELIgnored="false"%>
+<%@include file="/WEB-INF/views/layouts/user/taglib.jsp"%>
+<head>
+<content tag="css">
+<style>
+.navbar-search {
+	position: relative;
+	display: inline-block;
+	margin-bottom: -20px;
+}
+
+.search-input {
+	padding-right: 30px !important;
+	padding-left: 12px !important;
+	border: 1px solid #ccc;
+	border-radius: 30px !important;
+	height: 25px;
+	width: 200px;
+	font-size: 14px;
+}
+
+.search-icon {
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	transform: translateY(-70%);
+}
+
+.logo img {
+	object-fit: cover !important;
+	height: 60px !important;
+}
+</style>
+</content>
+</head>
 <header id="header">
 	<div class="row">
-		<div class="span4">
+		<div class="span3">
 			<h1>
-				<a class="logo" href="index.html"><span>Twitter Bootstrap
-						ecommerce template</span> <img
-					src="<c:url value="/assets/user/img/logo-bootstrap-shoping-cart.png" />"
-					alt="bootstrap sexy shop"> </a>
+				<a class="logo" href='<c:url value="/" />'><img width="100%"
+					src="<c:url value="/assets/user/ico/logo_screen.png" />"
+					alt="tc shop"> </a>
+
 			</h1>
 		</div>
-		<div class="span4">
+		<div class="span6">
 			<div class="offerNoteWrapper">
 				<h1 class="dotmark">
-					<i class="icon-cut"></i> Twitter Bootstrap shopping cart HTML
-					template is available @ $14
+					<i class="fa-solid fa-scissors"></i> "Tạo nên không gian sống độc
+					đáo - Nơi bạn thể hiện chính mình"
 				</h1>
 			</div>
 		</div>
-		<div class="span4 alignR">
+		<div class="span3 alignR">
 			<p>
-				<br> <strong> Support (24/7) : 0800 1234 678 </strong><br>
-				<br>
+				<br> <strong> Hỗ trợ (24/7) : 0386 681 545 </strong><br> <br>
+				congnt.21it@vku.udn.vn
 			</p>
-			<span class="btn btn-mini">[ 2 ] <span
-				class="icon-shopping-cart"></span></span> <span
-				class="btn btn-warning btn-mini">$</span> <span class="btn btn-mini">&pound;</span>
-			<span class="btn btn-mini">&euro;</span>
 		</div>
 	</div>
 </header>
@@ -45,45 +73,30 @@ Navigation Bar Section
 			</a>
 			<div class="nav-collapse">
 				<ul class="nav">
-					<c:forEach var="item" items="${menus }" varStatus="index">
-						<c:if test="${index.first }">
-							<li class="active">
-						</c:if>
-						<c:if test="${not index.first }">
-							<li class="">
-						</c:if>
-						<a href="index.html">${item.name } </a>
-						</li>
+					<c:forEach var="item" items="${menus}" varStatus="index">
+						<li><a class="nav-link" href='<c:url value="${item.url}" />'>${item.name}</a></li>
 					</c:forEach>
 				</ul>
-				<form action="#" class="navbar-search pull-left">
-					<input type="text" placeholder="Search" class="search-query span2">
+
+
+				<form action="#" class="navbar-search">
+					<input type="text" placeholder="Tìm sản phẩm nội thất"
+						class="search-input"> <i class="fas fa-search search-icon"></i>
 				</form>
+
+
 				<ul class="nav pull-right">
-					<li class="dropdown"><a data-toggle="dropdown"
-						class="dropdown-toggle" href="#"><span class="icon-lock"></span>
-							Đăng nhập <b class="caret"></b></a>
-						<div class="dropdown-menu">
-							<form class="form-horizontal loginFrm">
-								<div class="control-group">
-									<input type="text" class="span2" id="inputEmail"
-										placeholder="Email">
-								</div>
-								<div class="control-group">
-									<input type="password" class="span2" id="inputPassword"
-										placeholder="Password">
-								</div>
-								<div class="control-group">
-									<label class="checkbox"> <input type="checkbox">
-										Remember me
-									</label>
-									<button type="submit" class="shopBtn btn-block">Sign
-										in</button>
-								</div>
-							</form>
-						</div></li>
+					<c:if test="${not empty LoginInfo }">
+						<li class="dropdown"><a href='<c:url value="/dang-xuat" />'><i
+								class="fa-solid fa-right-from-bracket"></i> Đăng xuất </a></li>
+					</c:if>
+					<c:if test="${empty LoginInfo }">
+						<li class="dropdown"><a href='<c:url value="/dang-ky" />'><i
+								class="fa-solid fa-pen-to-square"></i> Đăng ký </a></li>
+					</c:if>
 				</ul>
 			</div>
 		</div>
 	</div>
 </div>
+

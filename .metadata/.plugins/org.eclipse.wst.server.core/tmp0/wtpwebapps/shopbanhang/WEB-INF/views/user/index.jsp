@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/layouts/user/taglib.jsp"%>
-<%@page isELIgnored="false"%>
 <title>Trang Chủ</title>
 <body>
 	<!-- Body Section -->
@@ -11,14 +10,14 @@
 				<ul class="nav nav-list">
 
 					<c:forEach var="item" items="${categorys }">
-						<li><a href='<c:url value="/san-pham/${item.id }" />'><span
-								class="icon-chevron-right"></span>${item.name }</a></li>
+						<li><a href='<c:url value="/san-pham/${item.id }" />'><i
+								class="fa-solid fa-play" style="margin-right: 4px"></i>${item.name }</a></li>
 					</c:forEach>
 
-					<li style="border: 0">&nbsp;</li>
 					<li><a class="totalInCart" href="cart.html"><strong>Tổng
 								tiền <span class="badge badge-warning pull-right"
-								style="line-height: 18px;">$448.42</span>
+								style="line-height: 18px;"><fmt:formatNumber
+										type="number" groupingUsed="true" value="${TotalPriceCart }" />₫</span>
 						</strong></a></li>
 				</ul>
 			</div>
@@ -163,7 +162,7 @@ New Products
 		<div class="well well-small">
 			<h3>
 				<a class="btn btn-mini pull-right" href="products.html"
-					title="View more">VIew More<span class="icon-plus"></span></a> Sản
+					title="Xem thêm">Xem thêm <i class="fa-solid fa-plus"></i></a> Sản
 				phẩm nổi bật
 			</h3>
 			<hr class="soften" />
@@ -175,17 +174,20 @@ New Products
 							varStatus="loop">
 							<li class="span4">
 								<div class="thumbnail">
-									<a class="zoomTool" href="product_details.html"
-										title="add to cart"><span class="icon-search"></span>
-										QUICK VIEW</a> <a href="chi-tiet-san-pham/${item.id_product }"><img
+									<a class="zoomTool" href="#" title="Xem chi tiết"><i
+										class="fa-solid fa-magnifying-glass"></i> Xem</a> <a
+										href="chi-tiet-san-pham/${item.id_product }"><img
 										src='<c:url value="/assets/user/img/${item.img }" />' alt=""></a>
 									<div class="caption">
 										<h5>${item.name }</h5>
 										<h4>
 											<a class="defaultBtn" href="product_details.html"
-												title="Click to view"><span class="icon-zoom-in"></span></a>
-											<a class="shopBtn" href="#" title="add to cart"><span
-												class="icon-plus"></span></a> <span class="pull-right"><fmt:formatNumber
+												title="Click to view"><span
+												class="fa-solid fa-magnifying-glass-plus"></span></a> <a
+												class="shopBtn"
+												href="<c:url value="/AddCart/${item.id_product }" />"
+												title="Thêm vào giỏ hàng"><span class="fa-solid fa-plus"></span></a>
+											<span class="pull-right"><fmt:formatNumber
 													type="number" groupingUsed="true" value="${item.price }" />₫
 											</span>
 										</h4>
@@ -207,8 +209,8 @@ New Products
 		</div>
 		<hr>
 		<div class="well well-small">
-			<a class="btn btn-mini pull-right" href="#">Xem thêm <span
-				class="icon-plus"></span></a> Tất cả sản phẩm
+			<a class="btn btn-mini pull-right" href="#">Xem thêm <i
+				class="fa-solid fa-plus"></i></a> Tất cả sản phẩm
 		</div>
 
 	</div>

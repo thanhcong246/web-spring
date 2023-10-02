@@ -1,0 +1,9 @@
+package shopbanhang.Entity;
+
+public class UsersEntity {
+	private long id;
+	private String user;
+	private String password;
+	private String display_name;
+	private String address;
+}

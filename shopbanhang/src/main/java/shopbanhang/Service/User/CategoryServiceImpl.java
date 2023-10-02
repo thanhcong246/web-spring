@@ -15,13 +15,13 @@ public class CategoryServiceImpl implements ICategoryService {
 	private ProductsDao productsDao;
 
 	@Override
-	public List<ProductsDto> GetAllProductsByID(int id) {
+	public List<ProductsDto> GetAllProductsByID(int id) { // lấy tất cả sản phẩm theo id category
 		return productsDao.GetAllProductsByID(id);
 	}
 
 	@Override
-	public List<ProductsDto> GetDataProductsPaginate(int start, int end) {
-		return productsDao.GetDataProductsPaginate(start, end);
+	public List<ProductsDto> GetDataProductsPaginate(int id, int start, int totalPage) { // phân trang
+		return productsDao.GetDataProductsPaginate(id, start, totalPage);
 	}
 
 }

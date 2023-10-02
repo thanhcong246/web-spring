@@ -1,0 +1,28 @@
+package shopbanhang.Entity;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import org.springframework.jdbc.core.RowMapper;
+
+public class MapperProducts implements RowMapper<Products>{
+
+	@Override
+	public Products mapRow(ResultSet rs, int rowNum) throws SQLException {
+        Products product = new Products();
+        product.setId(rs.getLong("id"));
+        product.setCategoryId(rs.getInt("id_category"));
+        product.setSizes(rs.getString("sizes"));
+        product.setName(rs.getString("name"));
+        product.setPrice(rs.getDouble("price"));
+        product.setSale(rs.getInt("sale"));
+        product.setTitle(rs.getString("title"));
+        product.setHighlight(rs.getBoolean("highlight"));
+        product.setNewProduct(rs.getBoolean("new_product"));
+        product.setDetails(rs.getString("details"));
+        product.setCreatedAt(rs.getDate("created_at"));
+        product.setUpdatedAt(rs.getDate("updated_at"));
+        return product;
+	}
+
+}

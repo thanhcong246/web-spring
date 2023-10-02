@@ -1,0 +1,14 @@
+package shopbanhang.Service.User;
+
+import java.util.List;
+
+import shopbanhang.Dto.ProductsDto;
+
+public class ProductServiceImpl implements IProductService {
+
+	@Override
+	public List<ProductsDto> GetProductById(int id) {
+		return GetProductById(id);
+	}
+
+}

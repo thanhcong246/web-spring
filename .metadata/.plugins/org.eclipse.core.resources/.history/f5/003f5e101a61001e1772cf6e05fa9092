@@ -1,0 +1,22 @@
+package shopbanhang.Entity;
+
+import java.sql.Date;
+
+public class Products {
+    private long id;
+    private int categoryId;
+    private String sizes;
+    private String name;
+    private double price;
+    private int sale;
+    private String title;
+    private boolean highlight;
+    private boolean newProduct;
+    private String details;
+    private Date createdAt;
+    private Date updatedAt;
+	public Products() {
+	}
+    
+    
+}

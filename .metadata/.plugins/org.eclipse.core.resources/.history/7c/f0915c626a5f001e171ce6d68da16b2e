@@ -1,0 +1,7 @@
+package shopbanhang.Service.User;
+
+import shopbanhang.Entity.Users;
+
+public interface IAccountService {
+	public int AddAccount(Users user)
+}

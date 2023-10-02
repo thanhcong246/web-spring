@@ -1,0 +1,7 @@
+package shopbanhang.Service.User;
+
+import shopbanhang.Entity.Bills;
+
+public interface IBillsService {
+	public int AddBills(Bills bill);
+}

@@ -1,11 +1,15 @@
 package shopbanhang.Dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import shopbanhang.Dto.ProductsDto;
 import shopbanhang.Dto.ProductsDtoMapper;
+import shopbanhang.Entity.MapperProducts;
+import shopbanhang.Entity.Products;
 
 // Xử lý hiển thị sản phẩm
 @Repository
@@ -62,19 +66,32 @@ public class ProductsDao extends BaseDao {
 		return sql.toString();
 	}
 
-	private String SqlProductsById(int id) { // sản phẩm theo id category
+	private StringBuffer SqlProductsById(int id) { // sản phẩm theo id category
 		StringBuffer sql = SqlString();
 		sql.append("WHERE 1 = 1 ");
 		sql.append(" AND id_category = " + id + " ");
+		return sql;
+	}
+
+	private String SqlProductsPaginate(int id, int start, int totalPage) { // phân trang sản phẩm
+		StringBuffer sql = SqlProductsById(id);
+		sql.append(" LIMIT " + start + ", " + totalPage);
 		return sql.toString();
 	}
 
-	private String SqlProductsPaginate(int start, int end) { // phân trang sản phẩm
+	private String SqlProductById(long id) { // chi tiết sản phẩm
 		StringBuffer sql = SqlString();
-		sql.append(" LIMIT " + start + ", " + end);
+		sql.append(" WHERE 1 = 1 ");
+		sql.append(" AND p.id = " + id + " ");
+		sql.append(" LIMIT 1 ");
 		return sql.toString();
 	}
 
+	private StringBuffer SqlAllProduct() {
+		StringBuffer sql = new StringBuffer("SELECT * FROM products"); // Lấy toàn bộ sản phẩm
+		return sql;
+	}
+	
 	public List<ProductsDto> GetDataNewProducts() { // xử lý sản phẩm mới
 		String sql = SqlProducts(YES, NO);
 		List<ProductsDto> listNewProducts = _jdbcTemplate.query(sql, new ProductsDtoMapper());
@@ -88,15 +105,38 @@ public class ProductsDao extends BaseDao {
 	}
 
 	public List<ProductsDto> GetAllProductsByID(int id) { // xử lý sản phẩm theo id category
-		String sql = SqlProductsById(id);
+		String sql = SqlProductsById(id).toString();
 		List<ProductsDto> listProducts = _jdbcTemplate.query(sql, new ProductsDtoMapper());
 		return listProducts;
 	}
 
-	public List<ProductsDto> GetDataProductsPaginate(int start, int end) { // xử lý phân trang sản phẩm
-		String sql = SqlProductsPaginate(start, end);
+	public List<ProductsDto> GetDataProductsPaginate(int id, int start, int totalPage) { // xử lý phân trang sản phẩm
+		StringBuffer sqlGetDataById = SqlProductsById(id);
+		List<ProductsDto> listProductsById = _jdbcTemplate.query(sqlGetDataById.toString(), new ProductsDtoMapper());
+		List<ProductsDto> listProducts = new ArrayList<ProductsDto>();
+		if (listProductsById.size() > 0) {
+			String sql = SqlProductsPaginate(id, start, totalPage);
+			listProducts = _jdbcTemplate.query(sql, new ProductsDtoMapper());
+		}
+		return listProducts;
+	}
+
+	public List<ProductsDto> GetProductById(long id) { // xử lý chi tiết sản phẩm
+		String sql = SqlProductById(id);
 		List<ProductsDto> listProducts = _jdbcTemplate.query(sql, new ProductsDtoMapper());
 		return listProducts;
+	}
+
+	public ProductsDto FindProductById(long id) { // lấy sản phẩm theo id sản phẩm
+		String sql = SqlProductById(id);
+		ProductsDto product = _jdbcTemplate.queryForObject(sql, new ProductsDtoMapper());
+		return product;
+	}
+	
+	public List<ProductsDto> GetAllProduct() { // xử lý lấy toàn bộ sản phẩm
+	    StringBuffer sql = SqlString();
+	    List<ProductsDto> productsList = _jdbcTemplate.query(sql.toString(), new ProductsDtoMapper());
+	    return productsList;
 	}
 
 }

@@ -1,0 +1,103 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@include file="/WEB-INF/views/layouts/user/taglib.jsp"%>
+<head>
+<content tag="css">
+<style>
+.navbar-search {
+	position: relative;
+	display: inline-block;
+	margin-bottom: -20px;
+}
+
+.search-input {
+	padding-right: 30px !important;
+	padding-left: 12px !important;
+	border: 1px solid #ccc;
+	border-radius: 30px !important;
+	height: 25px;
+	width: 200px;
+	font-size: 14px;
+}
+
+.search-icon {
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	transform: translateY(-70%);
+}
+
+.logo img {
+	object-fit: cover !important;
+	height: 50px !important;
+	width: 300px !important;
+}
+</style>
+</content>
+</head>
+<header id="header">
+	<div class="row">
+		<div class="span3">
+			<h1>
+				<a class="logo" href='<c:url value="/" />'><img
+					src="<c:url value="/assets/user/ico/logo_screen.png" />"
+					alt="tc shop"> </a>
+
+			</h1>
+		</div>
+		<div class="span6">
+			<div class="offerNoteWrapper">
+				<h1 class="dotmark">
+					<i class="fa-solid fa-scissors"></i> "Tạo nên không gian sống độc
+					đáo - Nơi bạn thể hiện chính mình"
+				</h1>
+			</div>
+		</div>
+		<div class="span3 alignR">
+			<p>
+				<br> <strong> Hỗ trợ (24/7) : 0386 681 545 </strong><br> <br>
+				congnt.21it@vku.udn.vn
+			</p>
+		</div>
+	</div>
+</header>
+
+<!--
+Navigation Bar Section 
+-->
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="container">
+			<a data-target=".nav-collapse" data-toggle="collapse"
+				class="btn btn-navbar"> <span class="icon-bar"></span> <span
+				class="icon-bar"></span> <span class="icon-bar"></span>
+			</a>
+			<div class="nav-collapse">
+				<ul class="nav">
+					<c:forEach var="item" items="${menus}" varStatus="index">
+						<li><a class="nav-link" href='<c:url value="${item.url}" />'>${item.name}</a></li>
+					</c:forEach>
+				</ul>
+
+
+				<form action="#" class="navbar-search">
+					<input type="text" placeholder="Tìm sản phẩm nội thất"
+						class="search-input"> <i class="fas fa-search search-icon"></i>
+				</form>
+
+
+				<ul class="nav pull-right">
+					<c:if test="${not empty LoginInfo }">
+						<li class="dropdown"><a href='<c:url value="/dang-xuat" />'><i
+								class="fa-solid fa-right-from-bracket"></i> Đăng xuất </a></li>
+					</c:if>
+					<c:if test="${empty LoginInfo }">
+						<li class="dropdown"><a href='<c:url value="/dang-ky" />'><i
+								class="fa-solid fa-pen-to-square"></i> Đăng ký </a></li>
+					</c:if>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+

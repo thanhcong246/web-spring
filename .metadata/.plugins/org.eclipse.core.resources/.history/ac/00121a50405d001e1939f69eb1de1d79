@@ -1,0 +1,10 @@
+package shopbanhang.Service.User;
+
+import org.springframework.stereotype.Service;
+
+import shopbanhang.Dto.ProductsDto;
+
+@Service
+public interface IProductService {
+	ProductsDto GetProductById(long id);
+}

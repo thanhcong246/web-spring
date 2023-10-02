@@ -1,0 +1,15 @@
+package shopbanhang.Service.User;
+
+import java.util.List;
+
+import shopbanhang.Dao.ProductsDao;
+import shopbanhang.Dto.ProductsDto;
+
+public class ProductServiceImpl implements IProductService {
+	ProductsDao productsDao = new ProductsDao();
+	@Override
+	public List<ProductsDto> GetProductById(long id) {
+		return productsDao.GetProductById(id);
+	}
+
+}

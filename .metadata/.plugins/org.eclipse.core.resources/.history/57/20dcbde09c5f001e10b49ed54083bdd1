@@ -1,0 +1,12 @@
+package shopbanhang.Service.User;
+
+import java.util.HashMap;
+
+import shopbanhang.Dto.CartDto;
+import shopbanhang.Entity.Bills;
+
+public interface IBillsService {
+	public int AddBills(Bills bill);
+	
+	public void AddBillsDetail(HashMap<Long, CartDtot> cart);
+}

@@ -1,0 +1,21 @@
+package shopbanhang.Service.User;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import shopbanhang.Dto.ProductsDto;
+import shopbanhang.Entity.Products;
+
+@Service
+public interface IProductService {
+	public List<Products> GetAllProduct();
+	
+	public ProductsDto GetProductById(long id);
+	
+	public List<ProductsDto> GetProductByIdCategory(int id);
+	
+	public int getTotalProductCount();
+	public List<Products> GetDataProductsAllPaginate(int start, int totalPage);
+
+}

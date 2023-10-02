@@ -1,0 +1,25 @@
+package shopbanhang.Service.User;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import shopbanhang.Dto.ProductsDto;
+import shopbanhang.Entity.Products;
+
+@Service
+public interface IProductService {
+	public List<Products> GetAllProduct();
+	
+	public ProductsDto GetProductById(long id);
+	
+	public List<ProductsDto> GetProductByIdCategory(int id);
+	
+	public int getTotalProductCount() {
+	    // Implement the logic to fetch the total count of products from your database
+	    // For example, if you're using a repository, you might have a method like:
+	    // return productRepository.count(); // Assuming your repository has a count() method
+	    return 0; // Replace 0 with the actual count logic
+	}
+
+}
