@@ -3,6 +3,7 @@
 <%@include file="/WEB-INF/views/layouts/user/taglib.jsp"%>
 <head>
 <title>Đăng nhập</title>
+
 </head>
 <body>
 	<!--  Body Section -->
@@ -90,36 +91,39 @@
 			</ul>
 			<h3>Đăng Nhập</h3>
 			<hr class="soft" />
-				<div class="span4" style="margin-left: 200px;">
-					<div class="well">
-						<h5>Đăng nhập</h5>
-						<form:form action="dang-nhap" method="POST" modelAttribute="user">
-							<div class="control-group">
-								<label class="control-label" for="inputEmail">Email</label>
-								<div class="controls">
-									<form:input type="email" class="span3" placeholder="Nhập email"
-										path="user" />
-								</div>
+			<div class="span4" style="margin-left: 150px;">
+				<div class="well">
+					<h3>Đăng nhập</h3>
+					<form:form action="dang-nhap" method="POST" modelAttribute="user">
+						<div class="control-group">
+							<label class="control-label" for="inputEmail">Email</label>
+							<div class="controls">
+								<form:input type="email" class="span3" placeholder="Nhập email"
+									path="user" />
 							</div>
-							<div class="control-group">
-								<label class="control-label" for="inputPassword">Mật
-									khẩu</label>
-								<div class="controls">
-									<form:input type="password" class="span3"
-										placeholder="Nhập mật khẩu" path="password" />
-								</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="inputPassword">Mật khẩu</label>
+							<div class="controls">
+								<form:input type="password" class="span3"
+									placeholder="Nhập mật khẩu" path="password" />
 							</div>
-							<div class="control-group">
-								<div class="controls">
-									<button type="submit" class="defaultBtn">Đăng nhập</button>
-									<a href="#">Quên mật khẩu?</a>
-								</div>
+						</div>
+						<span style="color: red"> <c:if
+								test="${not empty statusLogin}">
+								<div class="error">${statusLogin}</div>
+							</c:if></span>
+						<br>
+						<div class="control-group">
+							<div class="controls">
+								<button type="submit" class="defaultBtn">Đăng nhập</button>
+								<a href="#" style="margin-left: 20px">Quên mật khẩu?</a>
 							</div>
-						</form:form>
-					</div>
+						</div>
+					</form:form>
 				</div>
 			</div>
-
 		</div>
+
 	</div>
 </body>

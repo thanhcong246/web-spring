@@ -18,18 +18,17 @@ public class AccountServiceImpl implements IAccountService {
 	}
 
 	@Override
-	public Users CheckAccount(Users user) { // kiểm tra đăng nhập
-		String pass = user.getPassword();
-		user = usersDao.GetUserByAcc(user);
-		if (user != null) {
-			if (BCrypt.checkpw(pass, user.getPassword())) {
-				return user;
-			} else {
-				return null;
-			}
-		}
-		return null;
+	public Users CheckAccount(Users user) {
+	    String pass = user.getPassword();
+	    Users authenticatedUser = usersDao.GetUserByAcc(user);
+
+	    if (authenticatedUser != null && BCrypt.checkpw(pass, authenticatedUser.getPassword())) {
+	        return authenticatedUser;
+	    } else {
+	        return null; // Trả về null nếu không tìm thấy tài khoản hoặc sai mật khẩu
+	    }
 	}
+
 
 	@Override
     public Users GetUserByEmail(String email) {

@@ -19,12 +19,15 @@ public class UsersDao extends BaseDao {
 		return insert;
 	}
 
-	public Users GetUserByAcc(Users user) { // đăng nhập
-		String sql = "SELECT * FROM users WHERE user = '" + user.getUser() + "'";
-		Users result = _jdbcTemplate.queryForObject(sql, new MapperUsers());
-		return result;
+	public Users GetUserByAcc(Users user) {
+	    String sql = "SELECT * FROM users WHERE user = ?";
+	    try {
+	        Users result = _jdbcTemplate.queryForObject(sql, new Object[]{user.getUser()}, new MapperUsers());
+	        return result;
+	    } catch (EmptyResultDataAccessException e) {
+	        return null; // Trả về null nếu không tìm thấy tài khoản
+	    }
 	}
-	
 	public Users GetUserByEmail(String email) {
         String sql = "SELECT * FROM users WHERE user = ?";
         try {

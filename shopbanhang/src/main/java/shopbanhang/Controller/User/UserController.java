@@ -24,6 +24,8 @@ public class UserController extends BaseController {
 	@Autowired
 	AccountServiceImpl accountService = new AccountServiceImpl();
 
+	final Logger logger = LoggerFactory.getLogger(UserController.class);
+
 	@RequestMapping(value = "/dang-ky", method = RequestMethod.GET)
 	public ModelAndView Register() {
 		_mvShare.setViewName("user/account/register");
@@ -33,8 +35,17 @@ public class UserController extends BaseController {
 
 	@RequestMapping(value = "/dang-ky", method = RequestMethod.POST)
 	public ModelAndView CreateAcc(@ModelAttribute("user") @Valid Users user, BindingResult bindingResult) {
-		final Logger logger = LoggerFactory.getLogger(UserController.class);
 		ModelAndView modelAndView = new ModelAndView("user/account/register");
+
+		if (user.getPassword() == null || user.getPassword().isEmpty() || user.getConfirmPassword() == null
+				|| user.getConfirmPassword().isEmpty() || user.getDisplay_name() == null
+				|| user.getDisplay_name().isEmpty() || user.getAddress() == null || user.getAddress().isEmpty()) {
+			user.setPassword("");
+			user.setConfirmPassword("");
+			user.setDisplay_name("");
+			user.setAddress("");
+			return modelAndView;
+		}
 
 		// Kiểm tra xem có lỗi trong các trường không
 		if (bindingResult.hasErrors()) {
@@ -45,6 +56,10 @@ public class UserController extends BaseController {
 		// Kiểm tra xem mật khẩu và mật khẩu nhập lại có khớp nhau không
 		if (!user.getPassword().equals(user.getConfirmPassword())) {
 			bindingResult.rejectValue("confirmPassword", "error.user", "Mật khẩu nhập lại không khớp");
+			user.setPassword("");
+			user.setConfirmPassword("");
+			user.setDisplay_name("");
+			user.setAddress("");
 			return modelAndView;
 		}
 
@@ -52,6 +67,10 @@ public class UserController extends BaseController {
 		Users existingUser = accountService.GetUserByEmail(user.getUser());
 		if (existingUser != null) {
 			modelAndView.addObject("status", "Email đã tồn tại trong hệ thống");
+			user.setPassword("");
+			user.setConfirmPassword("");
+			user.setDisplay_name("");
+			user.setAddress("");
 			return modelAndView;
 		}
 
@@ -61,6 +80,10 @@ public class UserController extends BaseController {
 			return new ModelAndView("redirect:/dang-nhap");
 		} else {
 			modelAndView.addObject("status", "Đăng ký tài khoản thất bại");
+			user.setPassword("");
+			user.setConfirmPassword("");
+			user.setDisplay_name("");
+			user.setAddress("");
 			return modelAndView;
 		}
 
@@ -74,15 +97,25 @@ public class UserController extends BaseController {
 	}
 
 	@RequestMapping(value = "/dang-nhap", method = RequestMethod.POST)
-	public ModelAndView Login(HttpSession session, @ModelAttribute("user") Users user) {
-		user = accountService.CheckAccount(user);
-		if (user != null) {
-			_mvShare.setViewName("redirect:/");
-			session.setAttribute("LoginInfo", user);
+	public ModelAndView login(HttpSession session, @ModelAttribute("user") Users user) {
+		ModelAndView mv = new ModelAndView();
+
+		if (user.getUser() == null || user.getUser().isEmpty()) {
+			mv.addObject("statusLogin", "Mời bạn nhập thông tin");
+			user.setPassword("");
+			mv.setViewName("user/account/login");
 		} else {
-			_mvShare.addObject("statusLogin", "Đăng nhập thất bại");
+			Users loggedInUser = accountService.CheckAccount(user);
+			if (loggedInUser != null) {
+				mv.setViewName("redirect:/"); // Chuyển hướng về trang chủ
+				session.setAttribute("LoginInfo", loggedInUser);
+			} else {
+				mv.addObject("statusLogin", "Sai mật khẩu hoặc tài khoản");
+				user.setPassword("");
+				mv.setViewName("user/account/login");
+			}
 		}
-		return _mvShare;
+		return mv;
 	}
 
 	@RequestMapping(value = "/dang-xuat", method = RequestMethod.GET)

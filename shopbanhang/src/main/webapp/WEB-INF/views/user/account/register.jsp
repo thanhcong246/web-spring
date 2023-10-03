@@ -140,7 +140,7 @@
 									</label>
 									<div class="controls">
 										<form:input type="text" class="span3"
-											placeholder="Nhập họ và tên" path="display_name" />
+											placeholder="Nhập họ và tên" path="display_name"  />
 										<br> <span style="color: red"><form:errors
 												path="display_name" cssClass="error" /></span>
 									</div>
@@ -153,13 +153,13 @@
 										<form:input type="text" class="span3"
 											placeholder="Nhập địa chỉ" path="address" />
 										<br> <span style="color: red"><form:errors
-												path="address" cssClass="error" /></span>
+												path="address" cssClass="error" /></span> <br> <span
+											style="color: red"> <c:if test="${not empty status}">
+												<div class="error">${status}</div>
+											</c:if></span>
 									</div>
 								</div>
 							</div>
-							<c:if test="${not empty status}">
-								<div class="error">${status}</div>
-							</c:if>
 							<div class="controls">
 								<button type="submit" class="btn btn-success">Đăng ký</button>
 							</div>

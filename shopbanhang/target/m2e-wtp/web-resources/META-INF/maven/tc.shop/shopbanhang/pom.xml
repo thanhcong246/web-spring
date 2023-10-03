@@ -9,10 +9,11 @@
 	<name>shopbanhang Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<properties>
+		<spring.datasource.characterEncoding>UTF-8</spring.datasource.characterEncoding>
 	</properties>
 
 	<dependencies>
-		
+
 		<!-- logback -->
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
@@ -104,6 +105,8 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
+
+
 	</dependencies>
 	<build>
 		<finalName>shopbanhang</finalName>

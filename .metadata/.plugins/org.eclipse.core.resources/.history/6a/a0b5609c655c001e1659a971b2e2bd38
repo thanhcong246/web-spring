@@ -1,7 +1,0 @@
-package shopbanhang.Service.User;
-
-import java.util.List;
-
-public interface ICategoryService {
-	public List<>
-}
