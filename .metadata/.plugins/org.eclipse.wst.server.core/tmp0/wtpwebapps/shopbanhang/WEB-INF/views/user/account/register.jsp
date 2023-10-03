@@ -92,42 +92,78 @@
 			<hr class="soft" />
 
 			<div class="row">
-				<div class="span4">
+				<div class="span8">
 					<div class="well">
 						<h5>Đăng ký tài khoản</h5>
 						<br />
+
 						<form:form action="dang-ky" method="POST" modelAttribute="user">
-							<div class="control-group">
-								<label class="control-label" for="inputEmail">Email</label>
-								<div class="controls">
-									<form:input type="email" class="span3" placeholder="Nhập email"
-										path="user" />
+							<div class="row">
+								<div class="span4">
+									<div class="control-group">
+										<label class="control-label" for="inputEmail">Email <span
+											style="color: red">*</span></label>
+										<div class="controls">
+											<form:input type="email" class="span3"
+												placeholder="Nhập email" path="user" />
+
+											<br> <span style="color: red"> <form:errors
+													path="user" cssClass="error" /></span>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="inputEmail">Mật khẩu
+											<span style="color: red">*</span>
+										</label>
+										<div class="controls">
+											<form:input type="password" class="span3"
+												placeholder="Nhập mật khẩu" path="password" />
+											<br> <span style="color: red"><form:errors
+													path="password" cssClass="error" /></span>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="inputEmail">Nhập lại
+											mật khẩu <span style="color: red">*</span>
+										</label>
+										<div class="controls">
+											<form:input type="password" class="span3"
+												placeholder="Nhập lại mật khẩu" path="confirmPassword" />
+											<br> <span style="color: red"><form:errors
+													path="confirmPassword" cssClass="error" /></span>
+										</div>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputEmail">Họ và tên
+										<span style="color: red">*</span>
+									</label>
+									<div class="controls">
+										<form:input type="text" class="span3"
+											placeholder="Nhập họ và tên" path="display_name" />
+										<br> <span style="color: red"><form:errors
+												path="display_name" cssClass="error" /></span>
+									</div>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label" for="inputEmail">Địa chỉ <span
+										style="color: red">*</span></label>
+									<div class="controls">
+										<form:input type="text" class="span3"
+											placeholder="Nhập địa chỉ" path="address" />
+										<br> <span style="color: red"><form:errors
+												path="address" cssClass="error" /></span>
+									</div>
 								</div>
 							</div>
-							<div class="control-group">
-								<label class="control-label" for="inputEmail">Mật khẩu</label>
-								<div class="controls">
-									<form:input type="password" class="span3"
-										placeholder="Nhập mật khẩu" path="password" />
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label" for="inputEmail">Họ và tên</label>
-								<div class="controls">
-									<form:input type="text" class="span3"
-										placeholder="Nhập họ và tên" path="display_name" />
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label" for="inputEmail">Địa chỉ</label>
-								<div class="controls">
-									<form:input type="text" class="span3"
-										placeholder="Nhập địa chỉ" path="address" />
-								</div>
-							</div>
+							<c:if test="${not empty status}">
+								<div class="error">${status}</div>
+							</c:if>
 							<div class="controls">
-								<button type="submit" class="btn block">Đăng ký</button>
+								<button type="submit" class="btn btn-success">Đăng ký</button>
 							</div>
+
 						</form:form>
 					</div>
 				</div>

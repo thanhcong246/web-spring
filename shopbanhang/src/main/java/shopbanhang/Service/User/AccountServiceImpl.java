@@ -30,4 +30,10 @@ public class AccountServiceImpl implements IAccountService {
 		}
 		return null;
 	}
+
+	@Override
+    public Users GetUserByEmail(String email) {
+        return usersDao.GetUserByEmail(email);
+    }
+	
 }

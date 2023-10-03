@@ -2,9 +2,14 @@ package shopbanhang.Controller.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +19,7 @@ import shopbanhang.Entity.Users;
 import shopbanhang.Service.User.AccountServiceImpl;
 
 @Controller
+@Validated
 public class UserController extends BaseController {
 	@Autowired
 	AccountServiceImpl accountService = new AccountServiceImpl();
@@ -26,17 +32,40 @@ public class UserController extends BaseController {
 	}
 
 	@RequestMapping(value = "/dang-ky", method = RequestMethod.POST)
-	public ModelAndView CreateAcc(@ModelAttribute("user") Users user) {
+	public ModelAndView CreateAcc(@ModelAttribute("user") @Valid Users user, BindingResult bindingResult) {
+		final Logger logger = LoggerFactory.getLogger(UserController.class);
+		ModelAndView modelAndView = new ModelAndView("user/account/register");
+
+		// Kiểm tra xem có lỗi trong các trường không
+		if (bindingResult.hasErrors()) {
+			logger.error("Đăng ký tài khoản thất bại vì lỗi kiểm tra trường");
+			return modelAndView;
+		}
+
+		// Kiểm tra xem mật khẩu và mật khẩu nhập lại có khớp nhau không
+		if (!user.getPassword().equals(user.getConfirmPassword())) {
+			bindingResult.rejectValue("confirmPassword", "error.user", "Mật khẩu nhập lại không khớp");
+			return modelAndView;
+		}
+
+		// Kiểm tra xem email đã tồn tại trong database không
+		Users existingUser = accountService.GetUserByEmail(user.getUser());
+		if (existingUser != null) {
+			modelAndView.addObject("status", "Email đã tồn tại trong hệ thống");
+			return modelAndView;
+		}
+
 		int count = accountService.AddAccount(user);
 		if (count > 0) {
-			_mvShare.addObject("status", "Đăng ký tài khoản thành công");
+			modelAndView.addObject("status", "Đăng ký tài khoản thành công");
+			return new ModelAndView("redirect:/dang-nhap");
 		} else {
-			_mvShare.addObject("status", "Đăng ký tài khoản thất bại");
+			modelAndView.addObject("status", "Đăng ký tài khoản thất bại");
+			return modelAndView;
 		}
-		_mvShare.setViewName("user/account/register");
-		return _mvShare;
+
 	}
-	
+
 	@RequestMapping(value = "/dang-nhap", method = RequestMethod.GET)
 	public ModelAndView Login() {
 		_mvShare.setViewName("user/account/login");
@@ -61,6 +90,5 @@ public class UserController extends BaseController {
 		session.removeAttribute("LoginInfo");
 		return "redirect:" + request.getHeader("Referer");
 	}
-
 
 }

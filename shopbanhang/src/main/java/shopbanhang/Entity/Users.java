@@ -1,10 +1,26 @@
 package shopbanhang.Entity;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class Users {
 	private long id;
+
+	@NotBlank(message = "Email không được để trống")
+	@Email(message = "Email phải đúng định dạng")
 	private String user;
+
+	@NotBlank(message = "Mật khẩu không được để trống")
+	@Size(min = 6, message = "Mật khẩu phải có ít nhất 6 ký tự")
 	private String password;
+
+	private String confirmPassword;
+
+	@NotBlank(message = "Họ và tên không được để trống")
 	private String display_name;
+
+	@NotBlank(message = "Địa chỉ không được để trống")
 	private String address;
 
 	public Users() {
@@ -32,6 +48,14 @@ public class Users {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
 	}
 
 	public String getDisplay_name() {

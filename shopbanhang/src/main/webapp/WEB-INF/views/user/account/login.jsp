@@ -90,7 +90,7 @@
 			</ul>
 			<h3>Đăng Nhập</h3>
 			<hr class="soft" />
-				<div class="span4">
+				<div class="span4" style="margin-left: 200px;">
 					<div class="well">
 						<h5>Đăng nhập</h5>
 						<form:form action="dang-nhap" method="POST" modelAttribute="user">

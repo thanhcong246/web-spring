@@ -209,7 +209,7 @@ New Products
 		</div>
 		<hr>
 		<div class="well well-small">
-			<a class="btn btn-mini pull-right" href="#">Xem thêm <i
+			<a class="btn btn-mini pull-right" href='<c:url value="/san-pham" />'>Xem thêm <i
 				class="fa-solid fa-plus"></i></a> Tất cả sản phẩm
 		</div>
 

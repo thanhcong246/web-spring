@@ -1,5 +1,6 @@
 package shopbanhang.Dao;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Repository;
 
 import shopbanhang.Entity.MapperUsers;
@@ -23,4 +24,13 @@ public class UsersDao extends BaseDao {
 		Users result = _jdbcTemplate.queryForObject(sql, new MapperUsers());
 		return result;
 	}
+	
+	public Users GetUserByEmail(String email) {
+        String sql = "SELECT * FROM users WHERE user = ?";
+        try {
+            return _jdbcTemplate.queryForObject(sql, new Object[]{email}, new MapperUsers());
+        } catch (EmptyResultDataAccessException e) {
+            return null; // Email không tồn tại
+        }
+    }
 }
